@@ -1,7 +1,10 @@
 package com.microton.calc.holder;
 
+import java.math.BigDecimal;
+import java.util.Arrays;
 import org.mockito.Mockito;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 /**
@@ -11,7 +14,13 @@ import org.testng.annotations.Test;
  */
 public class HolderTest {
 
-    public static final String UUID = "9864";
+    private static final String UUID = "9864";
+    private static Calculation CALCULATION;
+
+    @BeforeClass
+    public void setUp() {
+        CALCULATION = Mockito.mock(Calculation.class);
+    }
 
     @Test
     public void createInstance_test() {
@@ -22,32 +31,28 @@ public class HolderTest {
     @Test
     public void updateCalc_test() {
         Holder holder = new Holder();
-        Calculation calc = Mockito.mock(Calculation.class);
-        holder.updateCalculatin(UUID, calc);
-        Assert.assertEquals(calc, holder.getCalculation(UUID));
+        holder.updateCalculatin(UUID, CALCULATION);
+        Assert.assertEquals(CALCULATION, holder.getCalculation(UUID));
     }
 
     @Test
     public void checkCalc_test() {
         Holder holder = new Holder();
-        Calculation calc = Mockito.mock(Calculation.class);
-        holder.updateCalculatin(UUID, calc);
+        holder.updateCalculatin(UUID, CALCULATION);
         Assert.assertTrue(holder.checkUuid(UUID));
     }
 
     @Test
     public void getCalc_test() {
         Holder holder = new Holder();
-        Calculation calc = Mockito.mock(Calculation.class);
-        holder.updateCalculatin(UUID, calc);
-        Assert.assertEquals(calc, holder.getCalculation(UUID));
+        holder.updateCalculatin(UUID, CALCULATION);
+        Assert.assertEquals(CALCULATION, holder.getCalculation(UUID));
     }
 
     @Test
     public void removeCalc_test() {
         Holder holder = new Holder();
-        Calculation calc = Mockito.mock(Calculation.class);
-        holder.updateCalculatin(UUID, calc);
+        holder.updateCalculatin(UUID, CALCULATION);
         holder.removeCalculation(UUID);
         Assert.assertNull(holder.getCalculation(UUID));
     }
