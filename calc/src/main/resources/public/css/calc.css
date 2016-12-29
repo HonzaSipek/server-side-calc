@@ -1,5 +1,8 @@
 #calc-ctn{
-    width: 40%;
+    width: 60%;
+    position:absolute;
+    margin-left:-30%;
+    left:50%;
 }
 
 #calc-history-area{

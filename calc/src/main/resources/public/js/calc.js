@@ -5,7 +5,7 @@
  * @returns {Calc} calculator
  */
 
-const HOST = "127.0.0.1:8080";
+var HOST = "127.0.0.1:8080";
 
 // Allowed numeric keys: 0;1;2;3;4;5;6;7;8;9;
 var allowedNumericKeyCodes = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57];
@@ -103,6 +103,7 @@ function Calc(calcCtn) {
         numberButtonsCtn.append(numberZero);
         numberButtonsCtn.append(comma);
         this.calcCtn.append(numberButtonsCtn);
+        
     };
 
     /**
@@ -232,7 +233,12 @@ function Calc(calcCtn) {
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log("Sending math request failed: " + errorThrown);
-                scope.showError(errorThrown);
+                var response = $.parseJSON(jqXHR.responseText);
+                if (typeof response.message !== "undefined") {
+                    scope.showError(response.message);
+                } else {
+                    scope.showError(errorThrown);
+                }
             }
         });
     };
@@ -255,11 +261,11 @@ function Calc(calcCtn) {
         console.log("Setting calculation history to view element: "
                 + JSON.stringify(calcHistory));
         var scope = this;
-        scope.calcHistory.empty();
+        scope.history.empty();
         calcHistory.reverse();
         $.each(calcHistory, function (index, value) {
-            scope.calcHistory.append(value);
-            scope.calcHistory.append("\n");
+            scope.history.append(value);
+            scope.history.append("\n");
         });
     };
 
@@ -269,6 +275,6 @@ function Calc(calcCtn) {
      */
     this.updateNumber = function (actualNumber) {
         console.log("Setting number to view element: " + actualNumber);
-        this.calcActualResult.val(actualNumber);
+        this.number.val(actualNumber);
     };
 }
