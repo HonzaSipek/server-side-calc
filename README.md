@@ -5,7 +5,19 @@
 * Client (jQuery, Bootstrap)
 * RESTful API
 
-## Run server calcuator
+## Caclulator function
+
+### Operation
+* add
+* subtract
+* multiply
+* divide
+
+### Input options
+* buttons
+* keyboard (numeric, numpad, comma, point, ESC, DEL, ENTER)
+
+## Run calculator
 
 ### Application prerequisites
 + Java 1.8 with JAVA_HOME system variable
