@@ -10,7 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
- * Unit tests for allowed key code enumerate.
+ * Unit tests for allowed key code enumerate {@link AllowedKeyCode}
  *
  * @author Jan Šípek
  */

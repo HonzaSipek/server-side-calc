@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 
 /**
- * Unit test for number utilities.
+ * Unit test for number utilities {@link NumberUtil}.
  *
  * @author Jan Šípek
  */
