@@ -5,3 +5,9 @@
 * Spring Boot
 * jQuery
 * Bootstrap
+
+## ARCHITECTURE
+* Server 
+* Client
+* RESTful API
+
