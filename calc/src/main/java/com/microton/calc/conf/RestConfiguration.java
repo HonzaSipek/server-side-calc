@@ -1,5 +1,6 @@
 package com.microton.calc.conf;
 
+import com.google.gson.Gson;
 import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,13 +31,15 @@ public class RestConfiguration extends WebSecurityConfigurerAdapter {
      */
     @Bean
     public HttpMessageConverters customConverters() {
-
         Collection<HttpMessageConverter<?>> messageConverters
                 = new ArrayList<>();
-
         GsonHttpMessageConverter gsonHttpMessageConverter
                 = new GsonHttpMessageConverter();
-
+        Gson gson = new com.google.gson.GsonBuilder()
+                .registerTypeAdapterFactory(
+                        new com.microton.calc.dto.GsonAdaptersDto())
+                .create();
+        gsonHttpMessageConverter.setGson(gson);
         messageConverters.add(gsonHttpMessageConverter);
         return new HttpMessageConverters(true, messageConverters);
     }
