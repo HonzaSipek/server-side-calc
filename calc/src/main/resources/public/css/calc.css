@@ -1,0 +1,53 @@
+#calc-ctn{
+    width: 40%;
+}
+
+#calc-history-area{
+    
+    width: 100%;
+    margin: 0px;
+    resize: none;
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+#actual-number-input{
+    
+    width: 100%;
+    margin: 0px;
+    resize: none;
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+#numeric-buttons-ctn{
+    width: 60%; 
+    float: left;
+}
+
+#numeric-buttons-ctn button{
+    width: calc(100% / 3 - 2%); 
+    height: calc(100% / 3 - 2%); 
+    margin-bottom: 2%;
+    margin-right: 2%;
+}
+
+#action-buttons-ctn{
+    width: 40%;
+    float: left;
+}
+
+#action-buttons-ctn .button-left{
+    width: calc(50% - 1.5%);
+    margin-bottom: 3%;
+    margin-right: 3%;
+}
+
+#action-buttons-ctn .button-right{
+    width: calc(50% - 1.5%);
+    margin-bottom: 3%;
+}
+
+#action-buttons-ctn .button-equal{
+    width: 100%;
+}
