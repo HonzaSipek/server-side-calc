@@ -1,13 +1,9 @@
 # SERVER SIDE CALCULATOR
 
-## USED TECHNOLOGIES
-* Java 1.8
-* Spring Boot
-* jQuery
-* Bootstrap
-
-## ARCHITECTURE
-* Server 
-* Client
+## ARCHITECTURE AND USED TECHNOLOGIES
+* Server (Java 1.8, Spring Boot)
+* Client (jQuery, Bootstrap)
 * RESTful API
+
+
 
