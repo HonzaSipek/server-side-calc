@@ -5,15 +5,15 @@
 * Client (jQuery, Bootstrap)
 * RESTful API
 
-## Caclulator function
+## Calculator function
 
-### Operation
+### Supported math operations
 * add
 * subtract
 * multiply
 * divide
 
-### Input options
+### Supported inputs
 * buttons
 * keyboard (numeric, numpad, comma, point, ESC, DEL, ENTER)
 
