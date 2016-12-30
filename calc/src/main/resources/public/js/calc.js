@@ -103,7 +103,7 @@ function Calc(calcCtn) {
         numberButtonsCtn.append(numberZero);
         numberButtonsCtn.append(comma);
         this.calcCtn.append(numberButtonsCtn);
-        
+
     };
 
     /**
@@ -166,6 +166,10 @@ function Calc(calcCtn) {
         console.log("Init key event in HTML document");
         var scope = this;
         $("html").keydown(function (event) {
+            if (scope.errorDialog.is(':visible')) {
+                event.preventDefault();
+                return;
+            }
             if ($.inArray(event.keyCode, allAllowedKeyCodes) >= 0) {
                 console.log("Using allowed key:" + event.key
                         + " with code: " + event.keyCode);

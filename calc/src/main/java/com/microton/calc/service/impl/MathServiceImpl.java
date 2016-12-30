@@ -4,6 +4,7 @@ import com.microton.calc.dto.ImmutableMathResponse;
 import com.microton.calc.dto.MathRequest;
 import com.microton.calc.dto.MathResponse;
 import com.microton.calc.enumerate.AllowedKeyCode;
+import com.microton.calc.enumerate.AllowedKeyCode.Numeric;
 import com.microton.calc.exception.DivisionByZeroException;
 import com.microton.calc.exception.InvalidUuidException;
 import com.microton.calc.holder.Calculation;
@@ -112,8 +113,21 @@ public class MathServiceImpl implements MathService {
      */
     private Calculation addNumberToArray(Calculation calc,
             AllowedKeyCode keyCode) {
-        List<Integer> numberArray = calc.getNumber();
-        numberArray.add(keyCode.getKeyCode());
+        List<Integer> numberArray = new ArrayList<>(calc.getNumber());
+
+        if (((Numeric) keyCode.getKeyCodeEnum()
+                == AllowedKeyCode.Numeric.DELIMETER_COMMA
+                || (Numeric) keyCode.getKeyCodeEnum()
+                == AllowedKeyCode.Numeric.DELIMETER_PERIOD
+                || (Numeric) keyCode.getKeyCodeEnum()
+                == AllowedKeyCode.Numeric.DELIMETER_POINT)
+                && calc.getNumber().isEmpty()) {
+
+            numberArray.add(AllowedKeyCode.Numeric.NUM_ZERO.getKeyCode());
+            numberArray.add(keyCode.getKeyCode());
+        } else {
+            numberArray.add(keyCode.getKeyCode());
+        }
         BigDecimal number = NumberUtil.getNumberFromKeyCodes(numberArray);
         calc.setNumber(numberArray);
         calc.setDisplayedNumber(number);
@@ -214,7 +228,7 @@ public class MathServiceImpl implements MathService {
             AllowedKeyCode operatorCode = AllowedKeyCode.valueOf(
                     calc.getOperator());
             calc = computeResult(calc, operatorCode);
-        } else if (calc.getResult() == null) {
+        } else if (calc.getResult() == null && !calc.getNumber().isEmpty()) {
             calc = initResult(calc);
         } else {
             return calc;
