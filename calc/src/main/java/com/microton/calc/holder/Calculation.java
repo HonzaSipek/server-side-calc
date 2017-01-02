@@ -18,6 +18,7 @@ public class Calculation {
     private Integer operator;
     private List<Integer> number;
     private BigDecimal displayedNumber;
+    private boolean completeResult;
 
     /**
      * Creates instance of calculation object
@@ -29,11 +30,13 @@ public class Calculation {
      * @param operator operator
      * @param number number
      * @param displayedNumber displayed number
+     * @param completeResult complete result status
      * @throws NullPointerException if last update is null
      */
     public Calculation(Long lastUpdate, List<String> history,
             String calculation, BigDecimal result, Integer operator,
-            List<Integer> number, BigDecimal displayedNumber)
+            List<Integer> number, BigDecimal displayedNumber,
+            boolean completeResult)
             throws NullPointerException {
         this.lastUpdate = Objects.requireNonNull(lastUpdate,
                 "Last update cannot be null");
@@ -43,6 +46,7 @@ public class Calculation {
         this.operator = operator;
         this.number = number;
         this.displayedNumber = displayedNumber;
+        this.completeResult = completeResult;
     }
 
     /**
@@ -173,4 +177,21 @@ public class Calculation {
         this.displayedNumber = displayedNumber;
     }
 
+    /**
+     * Gets complete result status.
+     *
+     * @return complete result status
+     */
+    public boolean isCompleteResult() {
+        return completeResult;
+    }
+
+    /**
+     * Sets complete result status.
+     *
+     * @param completeResult complete result status
+     */
+    public void setCompleteResult(boolean completeResult) {
+        this.completeResult = completeResult;
+    }
 }

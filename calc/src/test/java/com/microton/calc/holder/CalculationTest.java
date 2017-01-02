@@ -22,6 +22,7 @@ public class CalculationTest {
     private static final Integer OPERATOR = 106;
     private static List<Integer> NUMBER;
     private static BigDecimal DISPLAYED_NUMBER;
+    private static boolean COMPLETE_STATUS;
 
     @BeforeClass
     public void setUp() {
@@ -30,13 +31,14 @@ public class CalculationTest {
         RESULT = new BigDecimal(100);
         NUMBER = Arrays.asList(new Integer[]{52, 53});
         DISPLAYED_NUMBER = new BigDecimal(0);
+        COMPLETE_STATUS = true;
     }
 
     @Test
     public void createInstance_test() {
         Calculation calc = new Calculation(LAST_UPDATE,
                 HISTORY, CALCULATION, RESULT, OPERATOR,
-                NUMBER, DISPLAYED_NUMBER);
+                NUMBER, DISPLAYED_NUMBER, COMPLETE_STATUS);
         Assert.assertEquals(LAST_UPDATE, new Long(calc.getLastUpdate()));
         Assert.assertEquals(HISTORY, calc.getHistory());
         Assert.assertEquals(CALCULATION, calc.getCalculation());
@@ -49,14 +51,14 @@ public class CalculationTest {
     @Test(expectedExceptions = NullPointerException.class)
     public void createInstanceWithNullLastUpdate_test() {
         Calculation calc = new Calculation(null, HISTORY, CALCULATION,
-                RESULT, OPERATOR, NUMBER, DISPLAYED_NUMBER);
+                RESULT, OPERATOR, NUMBER, DISPLAYED_NUMBER, COMPLETE_STATUS);
     }
 
     @Test
     public void setLastUpdate_test() {
         Calculation calc = new Calculation(LAST_UPDATE,
                 HISTORY, CALCULATION, RESULT, OPERATOR,
-                NUMBER, DISPLAYED_NUMBER);
+                NUMBER, DISPLAYED_NUMBER, COMPLETE_STATUS);
         Long lastUpdate = System.currentTimeMillis();
         calc.setLastUpdate(lastUpdate);
         Assert.assertEquals(lastUpdate, new Long(calc.getLastUpdate()));
@@ -66,7 +68,7 @@ public class CalculationTest {
     public void setNullLastUpdate_test() {
         Calculation calc = new Calculation(LAST_UPDATE,
                 HISTORY, CALCULATION, RESULT, OPERATOR,
-                NUMBER, DISPLAYED_NUMBER);
+                NUMBER, DISPLAYED_NUMBER, COMPLETE_STATUS);
         calc.setLastUpdate(null);
     }
 
@@ -74,7 +76,7 @@ public class CalculationTest {
     public void setHistory_test() {
         Calculation calc = new Calculation(LAST_UPDATE,
                 HISTORY, CALCULATION, RESULT, OPERATOR,
-                NUMBER, DISPLAYED_NUMBER);
+                NUMBER, DISPLAYED_NUMBER, COMPLETE_STATUS);
         List<String> history = new ArrayList<>();
         history.add("3 + 3 = 6");
         calc.setHistory(history);
@@ -85,7 +87,7 @@ public class CalculationTest {
     public void setCalculation_test() {
         Calculation calc = new Calculation(LAST_UPDATE,
                 HISTORY, CALCULATION, RESULT, OPERATOR,
-                NUMBER, DISPLAYED_NUMBER);
+                NUMBER, DISPLAYED_NUMBER, COMPLETE_STATUS);
         String calculation = "3 + 3 = 6";
         calc.setCalculation(calculation);
         Assert.assertEquals(calculation, calc.getCalculation());
@@ -95,7 +97,7 @@ public class CalculationTest {
     public void setResult_test() {
         Calculation calc = new Calculation(LAST_UPDATE,
                 HISTORY, CALCULATION, RESULT, OPERATOR,
-                NUMBER, DISPLAYED_NUMBER);
+                NUMBER, DISPLAYED_NUMBER, COMPLETE_STATUS);
         BigDecimal result = new BigDecimal(20);
         calc.setResult(result);
         Assert.assertEquals(result, calc.getResult());
@@ -105,7 +107,7 @@ public class CalculationTest {
     public void setOperator_test() {
         Calculation calc = new Calculation(LAST_UPDATE,
                 HISTORY, CALCULATION, RESULT, OPERATOR,
-                NUMBER, DISPLAYED_NUMBER);
+                NUMBER, DISPLAYED_NUMBER, COMPLETE_STATUS);
         Integer operator = 107;
         calc.setOperator(operator);
         Assert.assertEquals(operator, calc.getOperator());
@@ -115,7 +117,7 @@ public class CalculationTest {
     public void setNumber_test() {
         Calculation calc = new Calculation(LAST_UPDATE,
                 HISTORY, CALCULATION, RESULT, OPERATOR,
-                NUMBER, DISPLAYED_NUMBER);
+                NUMBER, DISPLAYED_NUMBER, COMPLETE_STATUS);
         List<Integer> number = Arrays.asList(new Integer[]{50, 51});
         calc.setNumber(number);
         Assert.assertEquals(number, calc.getNumber());
@@ -125,7 +127,7 @@ public class CalculationTest {
     public void setDisplayedNumber_test() {
         Calculation calc = new Calculation(LAST_UPDATE,
                 HISTORY, CALCULATION, RESULT, OPERATOR,
-                NUMBER, DISPLAYED_NUMBER);
+                NUMBER, DISPLAYED_NUMBER, COMPLETE_STATUS);
         BigDecimal displayedNumber = new BigDecimal(1);
         calc.setDisplayedNumber(displayedNumber);
         Assert.assertEquals(displayedNumber, calc.getDisplayedNumber());

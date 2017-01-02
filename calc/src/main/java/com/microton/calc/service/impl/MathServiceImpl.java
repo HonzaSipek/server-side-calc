@@ -47,7 +47,7 @@ public class MathServiceImpl implements MathService {
         String uuid = UUID.randomUUID().toString();
         Calculation calc = new Calculation(
                 System.currentTimeMillis(), new ArrayList<>(), "",
-                null, null, new ArrayList<>(), new BigDecimal(0));
+                null, null, new ArrayList<>(), new BigDecimal(0), false);
         holder.updateCalculatin(uuid, calc);
         return uuid;
     }
@@ -128,6 +128,13 @@ public class MathServiceImpl implements MathService {
         } else {
             numberArray.add(keyCode.getKeyCode());
         }
+
+        if (calc.isCompleteResult() && calc.getOperator() == null) {
+            calc.setCalculation("");
+            calc.setResult(null);
+            calc.setCompleteResult(false);
+        }
+
         BigDecimal number = NumberUtil.getNumberFromKeyCodes(numberArray);
         calc.setNumber(numberArray);
         calc.setDisplayedNumber(number);
@@ -241,9 +248,13 @@ public class MathServiceImpl implements MathService {
         history.add(calculation.toString());
         calc.setNumber(new ArrayList<>());
         calc.setHistory(history);
-        calc.setCalculation("");
+//        calculation = new StringBuilder();
+//        calculation.append(calc.getResult());
+//        calculation.append(" ");
+        //calc.setCalculation(calculation.toString());
         calc.setDisplayedNumber(calc.getResult());
-        calc.setResult(null);
+        calc.setResult(calc.getResult());
+        calc.setCompleteResult(true);
         calc.setOperator(null);
         return calc;
     }
